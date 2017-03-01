@@ -9,18 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var display: UILabel?
+    // UILabel is implicitly unwrapped with `!`
+    @IBOutlet weak var display: UILabel!
     
     var userIsInTheMiddleOfTyping = false
     
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
-            let textCurrentlyInDisplay = display!.text!
-            display!.text = textCurrentlyInDisplay + digit
+            let textCurrentlyInDisplay = display.text!
+            display.text = textCurrentlyInDisplay + digit
         } else {
-            display!.text = digit
+            display.text = digit
         }
         userIsInTheMiddleOfTyping = true
     }
