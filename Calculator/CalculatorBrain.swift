@@ -40,15 +40,23 @@ class CalculatorBrain {
         if let operation = operations[symbol] {
             switch operation {
             // pull out associated constant value and put it in value
-            case .Constant(let value): accumulator = value
-            case .UnaryOperation(let function): accumulator = function(accumulator)
-            case .BinaryOperation(let function): pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+            case .Constant(let value):
+                accumulator = value
+            case .UnaryOperation(let function):
+                accumulator = function(accumulator)
+            case .BinaryOperation(let function):
+                executePendingBinaryOperation()  // execute pending operation
+                pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
-                if pending != nil {
-                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
-                    pending = nil
-                }
+                executePendingBinaryOperation()
             }
+        }
+    }
+    
+    private func executePendingBinaryOperation() {
+        if pending != nil {
+            accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+            pending = nil
         }
     }
     
