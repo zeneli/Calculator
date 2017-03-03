@@ -36,19 +36,21 @@ class ViewController: UIViewController {
         }
     }
     
+    // ViewController talks to Model class
+    private var brain = CalculatorBrain()
+    
     @IBAction private func performOperation(_ sender: UIButton) {
-        // clean display for operations
-        userIsInTheMiddleOfTyping = false
-        // if let mathematicalSymbol equal the current senders title, then do something
-        if let mathematicalSymbol = sender.currentTitle {
-            if mathematicalSymbol == "π" {
-                //display.text = String(M_PI)
-                displayValue = M_PI
-            } else if mathematicalSymbol == "√" {
-                displayValue = sqrt(displayValue)
-            }
+        if userIsInTheMiddleOfTyping {
+            brain.setOperand(operand: displayValue)
         }
         
+        userIsInTheMiddleOfTyping = false
+        
+        
+        if let mathematicalSymbol = sender.currentTitle {
+            brain.performOperation(symbol: mathematicalSymbol)
+        }
+        displayValue = brain.result
     }
 }
 

@@ -9,14 +9,20 @@
 import Foundation
 
 class CalculatorBrain {
-    func setOperand(operand: Double) { }
+    private var accumulator = 0.0
     
-    func performOperation(symbol: String) { }
+    func setOperand(operand: Double) {
+        accumulator = operand
+    }
+    
+    func performOperation(symbol: String) {
+        
+    }
     
     // result is a computed read-only property
     var result: Double {
         get {
-            return 0.0
+            return accumulator
         }
     }
 }
