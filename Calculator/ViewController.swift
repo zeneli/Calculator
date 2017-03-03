@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     // UILabel is implicitly unwrapped with `!`
-    @IBOutlet weak var display: UILabel!
+    @IBOutlet private weak var display: UILabel!
     
-    var userIsInTheMiddleOfTyping = false
+    private var userIsInTheMiddleOfTyping = false
     
-    @IBAction func touchDigit(_ sender: UIButton) {
+    @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
 
     // a computed property
-    var displayValue: Double {
+    private var displayValue: Double {
         get {  // get the display value, assume we have double otherwise crash
             // Double wrapper returns optional, we cannot unwrap in certain situations
             return Double(display.text!)!
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func performOperation(_ sender: UIButton) {
+    @IBAction private func performOperation(_ sender: UIButton) {
         // clean display for operations
         userIsInTheMiddleOfTyping = false
         // if let mathematicalSymbol equal the current senders title, then do something
