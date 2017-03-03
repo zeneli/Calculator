@@ -25,13 +25,27 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTyping = true
     }
 
+    // a computed property
+    var displayValue: Double {
+        get {  // get the display value, assume we have double otherwise crash
+            // Double wrapper returns optional, we cannot unwrap in certain situations
+            return Double(display.text!)!
+        }
+        set { // set the display value, convert to string
+            display.text = String(newValue)
+        }
+    }
+    
     @IBAction func performOperation(_ sender: UIButton) {
         // clean display for operations
         userIsInTheMiddleOfTyping = false
         // if let mathematicalSymbol equal the current senders title, then do something
         if let mathematicalSymbol = sender.currentTitle {
             if mathematicalSymbol == "π" {
-                display.text = String(M_PI)
+                //display.text = String(M_PI)
+                displayValue = M_PI
+            } else if mathematicalSymbol == "√" {
+                displayValue = sqrt(displayValue)
             }
         }
         
