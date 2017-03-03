@@ -16,7 +16,11 @@ class CalculatorBrain {
     }
     
     func performOperation(symbol: String) {
-        
+        switch symbol {
+        case "π": accumulator = M_PI
+        case "√": accumulator = sqrt(accumulator)
+        default: break
+        }
     }
     
     // result is a computed read-only property

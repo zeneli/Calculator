@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         }
         userIsInTheMiddleOfTyping = true
     }
-
+    
     // a computed property
     private var displayValue: Double {
         get {  // get the display value, assume we have double otherwise crash
