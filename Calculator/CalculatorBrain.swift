@@ -18,14 +18,14 @@ class CalculatorBrain {
     var operations: Dictionary<String, Operation> = [
         "π": Operation.Constant(M_PI), // put assoc val in
         "e": Operation.Constant(M_E),
-        "√": Operation.UnaryOperation, //sqrt,
-        "cos": Operation.UnaryOperation, //cos
+        "√": Operation.UnaryOperation(sqrt),
+        "cos": Operation.UnaryOperation(cos),
     ]
     
     enum Operation {
         // associated value with Constant
         case Constant(Double)
-        case UnaryOperation
+        case UnaryOperation((Double) -> Double)
         case BinaryOperation
         case Equals
     }
@@ -35,7 +35,7 @@ class CalculatorBrain {
             switch operation {
             // pull out associated constant value and put it in value
             case .Constant(let value): accumulator = value
-            case .UnaryOperation: break
+            case .UnaryOperation(let function): accumulator = function(accumulator)
             case .BinaryOperation: break
             case .Equals: break
             }
