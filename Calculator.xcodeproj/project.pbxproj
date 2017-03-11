@@ -314,6 +314,7 @@
 				23FF4C151E6749C90026F90D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
